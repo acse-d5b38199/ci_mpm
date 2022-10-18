@@ -4,7 +4,7 @@ from numpy import sqrt
 
 from simple_functions.functions1 import factorial
 
-__all__ = ['pi', 'rsum']
+__all__ = ['pi']
 
 
 def pi(terms=1):

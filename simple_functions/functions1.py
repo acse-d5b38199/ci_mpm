@@ -2,7 +2,7 @@ from functools import cache
 
 import torch
 
-__all__ = ['my_sum', 'factorial', 'my_sin', 'my_torch_version']
+__all__ = ['my_sum', 'factorial', 'my_sin', 'my_torch']
 
 
 def my_sum(iterable):
@@ -27,6 +27,9 @@ def my_sin(x):
 
 
 @cache
-def my_torch_version():
-    x = torch.__version__
-    return x
+def my_torch():
+    t = torch.ones(5)
+    return t
+
+
+print(my_torch())

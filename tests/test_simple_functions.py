@@ -33,4 +33,4 @@ class TestSimpleFunctions(object):
     def test_sin(self, x_in, expected):
         """ Test sin function """
         answer = my_sin(x_in)
-        assert answer == expected
+        assert np.isclose(answer, expected)

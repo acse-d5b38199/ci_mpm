@@ -1,7 +1,5 @@
 from functools import cache
 
-import numpy as np
-
 __all__ = ['my_sum', 'factorial', 'my_sin']
 
 
@@ -19,4 +17,8 @@ def factorial(n):
 
 @cache
 def my_sin(x):
-    return np.sin(x)
+    N = 5
+    res_sin = 0
+    for i in range(N):
+        res_sin += ((-1)**i)*((x**(2*i+1))/factorial(2*i+1))
+    return res_sin

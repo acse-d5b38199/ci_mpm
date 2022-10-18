@@ -1,0 +1,63 @@
+name: pytest-tests-matrices
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  pytest:
+    name: ${{ matrix.name }}
+    runs-on: "${{ matrix.os }}"
+
+    env:
+      PYTHON_VERSION: 3.9
+      TESTS: "tests/"
+
+    strategy:
+      # Prevent all build to stop if a single one fails
+      fail-fast: false
+
+      matrix:
+        name: [
+           ubuntu2004,
+           ubuntu2204,
+           macOS,
+           windows
+        ]
+        include:
+        - name: ubuntu2004
+          os: ubuntu-20.04
+
+        - name: ubuntu2204
+          os: ubuntu-22.04
+
+        - name: macOs
+          os: macos-latest
+        
+        - name: windows
+          os: windows-latest
+  
+    steps:
+    - name: Checkout simple_functions
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -e .
+        pip install -r requirements.txt
+
+    - name: Test with pytest
+      run: |
+        pytest tests/

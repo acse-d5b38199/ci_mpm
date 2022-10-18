@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from simple_functions import factorial, my_sin, my_sum
+from simple_functions import factorial, my_sin, my_sum, my_torch_version
 
 
 class TestSimpleFunctions(object):
@@ -34,3 +34,9 @@ class TestSimpleFunctions(object):
         """ Test sin function """
         answer = my_sin(x_in)
         assert np.isclose(answer, expected)
+
+    @pytest.mark.parametrize('expected', ['1.12.1'])
+    def test_torch(self, expected):
+        """ Test sin function """
+        my_version = my_torch_version()
+        assert my_version == expected

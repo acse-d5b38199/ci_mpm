@@ -11,3 +11,5 @@ dependencies:
   - sympy
   - flake8
   - pytest
+  - torch 
+  - torchvision

@@ -1,6 +1,8 @@
 from functools import cache
 
-__all__ = ['my_sum', 'factorial', 'my_sin']
+import torch
+
+__all__ = ['my_sum', 'factorial', 'my_sin', 'my_torch_version']
 
 
 def my_sum(iterable):
@@ -22,3 +24,9 @@ def my_sin(x):
     for i in range(N):
         res_sin += ((-1)**i)*((x**(2*i+1))/factorial(2*i+1))
     return res_sin
+
+
+@cache
+def my_torch_version():
+    x = torch.__version__
+    return x
